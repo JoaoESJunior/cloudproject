@@ -1,0 +1,8 @@
+
+# Dockerfile para o Frontend Container (API)
+FROM python:3.9-slim-bullseye
+WORKDIR /app
+COPY requirements.api.txt .
+RUN pip install --no-cache-dir -r requirements.api.txt
+COPY scripts/api_server.py .
+CMD ["python", "api_server.py"]

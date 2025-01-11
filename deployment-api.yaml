@@ -1,0 +1,28 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-server-deployment
+  namespace: joaojunior
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api-server
+  template:
+    metadata:
+      labels:
+        app: api-server
+    spec:
+      containers:
+      - name: api-server
+        image: joaoesjunior/api-container:api-0.1
+        ports:
+        - containerPort: 5000
+        volumeMounts:
+        - name: model-volume
+          mountPath: /home/joaojunior/project2-pv2
+      volumes:
+      - name: model-volume
+        persistentVolumeClaim:
+          claimName: project2-pv2-joaojunior

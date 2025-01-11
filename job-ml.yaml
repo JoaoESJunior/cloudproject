@@ -1,0 +1,20 @@
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ml-model-job
+  namespace: joaojunior
+spec:
+  template:
+    spec:
+      containers:
+      - name: ml-container
+        image: joaoesjunior/ml-container:ml-0.1
+        volumeMounts:
+        - name: model-volume
+          mountPath: /home/joaojunior/project2-pv2
+      volumes:
+      - name: model-volume
+        persistentVolumeClaim:
+          claimName: project2-pv2-joaojunior
+      restartPolicy: Never

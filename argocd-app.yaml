@@ -1,0 +1,19 @@
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: project2-app
+  namespace: argocd
+spec:
+  project: joaojunior-project
+  source:
+    repoURL: 'https://github.com/joaoesjunior/repo'
+    targetRevision: HEAD
+    path: .
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: joaojunior
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
