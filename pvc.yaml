@@ -9,8 +9,6 @@ spec:
   resources:
     requests:
       storage: 1Gi
-  selector:
-    matchLabels:
-      type: local
-      namespace: joaojunior
+  volumeName: project2-pv2-joaojunior  # Nome exato do PV
   storageClassName: default-storage-class-joaojunior
+
